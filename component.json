@@ -1,0 +1,5 @@
+{
+  "name": "Tribulations",
+  "version": "0.0.1",
+  "main": "./build/tribulations.min.js"
+}
