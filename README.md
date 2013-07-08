@@ -9,17 +9,17 @@ You should use Tribulations when your experimental structure can be expressed by
 
 ![Example of a tree showing experimental structure](docs/experiment_structure.png)
 
-Aside from the assumption that your experimental structure follows a tree with all of it leaves at equal depth, **Tribulations makes no assumptions about the structure of your experiment**. Most of the logic specific to your experiment will still be implemented by you.
+Aside from the assumption that your experimental structure follows a tree with all of it leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. Most of the logic specific to your experiment will still be implemented by you.
 
 Prerequisites
 -------------
 
-Tribulations uses Marionette, a popular Javascript MV\* framework built on Backbone.js. Marionette requires Backbone, Underscore, and jQuery.
+Tribulations uses Marionette, a popular Javascript MV\* framework built on Backbone.js. 
 
 * [Marionette.js](http://marionettejs.com)
-  1. [jQuery](http://jquery.com)
-  1. [Backbone.js](http://backbonejs.org/)
-  1. [Underscore.js](http://underscorejs.org/)
+  * [jQuery](http://jquery.com)
+  * [Backbone.js](http://backbonejs.org/)
+  * [Underscore.js](http://underscorejs.org/)
 
 Usage
 ------
