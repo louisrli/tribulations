@@ -47,7 +47,14 @@ Tribulations = ((($, _, Backbone, Marionette) ->
       currentNode = @experimentStructure.getChildAtCoord(stateWithDepth)
       ViewClass = @options.subviewClasses[@currentDepth]
 
-      newView = new ViewClass(model: currentNode.innerModel, state: @currentState)
+      # Convert an object to a Backbone model if needed
+      rawModel = currentNode.get("innerModel")
+      m = if rawModel instanceof Backbone.Model
+        rawModel
+      else
+        new Backbone.Model(rawModel)
+
+      newView = new ViewClass(model: m, state: @currentState)
       @listenTo(newView, "runner:sectionEnd", -> @trigger("runner:sectionEnd"))
 
       @experimentRegion.show(newView)

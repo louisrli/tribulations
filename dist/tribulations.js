@@ -57,7 +57,7 @@ Tribulations = (function($, _, Backbone, Marionette) {
     };
 
     ExperimentRunnerView.prototype.sectionBegin = function() {
-      var ViewClass, currentNode, newView, stateWithDepth;
+      var ViewClass, currentNode, m, newView, rawModel, stateWithDepth;
       if (this.experimentFinished) {
         console.error("Received a sectionBegin event after experiment finished");
         return;
@@ -65,8 +65,10 @@ Tribulations = (function($, _, Backbone, Marionette) {
       stateWithDepth = _.take(this.currentState, this.currentDepth + 1);
       currentNode = this.experimentStructure.getChildAtCoord(stateWithDepth);
       ViewClass = this.options.subviewClasses[this.currentDepth];
+      rawModel = currentNode.get("innerModel");
+      m = rawModel instanceof Backbone.Model ? rawModel : new Backbone.Model(rawModel);
       newView = new ViewClass({
-        model: currentNode.innerModel,
+        model: m,
         state: this.currentState
       });
       this.listenTo(newView, "runner:sectionEnd", function() {
