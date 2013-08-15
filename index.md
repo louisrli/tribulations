@@ -23,7 +23,9 @@ This demo illustrates a simple experiment in which the user is asked to click on
 {% include demo.html %}
 
 # Usage
-Tribulations only exports two classes: `Tribulations.ExperimentRunnerView` (a subclass of [`Marionette.Layout`](https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md) and `Tribulations.Node`.
+Tribulations only exports two classes: 
+1. `Tribulations.ExperimentRunnerView`: renders the views in the proper order, subclasses [`Marionette.Layout`](https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md) that 
+2. `Tribulations.Node`: a node object for constructing a tree, subclasses [`Backbone.Model`](http://backbonejs.org/#Model) and expects two relevant properties: `innerModel` and `children`
 
 **NOTE**: This documentation assumes some knowledge of [Marionette](http://marionettejs.com/). 
 
@@ -47,6 +49,7 @@ var EXPERIMENT = {
 ```
 
 1. **Create view classes and templates for each level of the tree.** These classes should be subclasses of [`Marionette.View`](https://github.com/marionettejs/backbone.marionette/tree/master/docs) for each level of the experimental tree. (Recall that in Javascript MV\* frameworks, views are actually more akin to the controllers of traditional MVC, containing more application logic).
+
 ```javascript
 // helper for click events
 var endOnClickEvents = {
@@ -99,6 +102,7 @@ var NumberTask = Backbone.Model.extend({
 ```
 
 2. **Convert the experimental structure into a tree.** Instantiate `Tribulations.NodeModel` objects (nodes containing model objects) optionally passing down an `innerModel` model (JSON or `Backbone.Model`) and setting `children` that will eventually be rendered in the view. Be careful, as **this section will different drastically depending on the experiment.**
+
 ```javascript
 // Create a tree from the experimental structure using Tribulations.Node
 var root = new Tribulations.NodeModel();
@@ -133,6 +137,7 @@ root.set("children", _.map(EXPERIMENT, function(value, key) {
 ```
 
 3. **Create a DOM element for the experiment**. The name of the template and the region can be anything -- they will be passed into a view later.
+
 ```html
 <script id="runner-template" type="text/html">
   <div id="#experiment-region">
@@ -140,6 +145,7 @@ root.set("children", _.map(EXPERIMENT, function(value, key) {
 </script>
 ``` 
 4. **Run the experiment**: Initialize a `Tribulations.ExperimentRunnerView` with your experimental structure. Once you show this view in Marionette, the experiment will begin.
+
 ```javascript
 var experimentRunnerView = new Tribulations.ExperimentRunnerView({
     experimentStructure: experimentStructure
