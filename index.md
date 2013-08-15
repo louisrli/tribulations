@@ -100,7 +100,6 @@ var NumberTask = Backbone.Model.extend({
   <%- number %>  <!-- access the number passed down from the model -->
 </script>
 ```
-
 2. **Convert the experimental structure into a tree.** Instantiate `Tribulations.NodeModel` objects (nodes containing model objects) optionally passing down an `innerModel` model (JSON or `Backbone.Model`) and setting `children` that will eventually be rendered in the view. Be careful, as **this section will different drastically depending on the experiment.**
 
 ```javascript
