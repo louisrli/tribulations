@@ -8,7 +8,6 @@ module.exports = (grunt) ->
       build:
         files:
           'dist/<%= pkg.name %>.min.js' : 'dist/<%= pkg.name %>.js'
-          '<%= pkg.name %>.min.js' : 'dist/<%= pkg.name %>.js'
 
     coffee:
       compile:
