@@ -1,10 +1,9 @@
-###*
- * @classdesc A class for running through different, nested sections for a test,
+###
+ * A class for running through different, nested sections for a test,
  * automatically handling transitions between the section. 
  * For example: a test can have many conditions, each of which has blocks,
  * each of which has trials.
  * 
- * @constructor
 ###
 Tribulations = ((($, _, Backbone, Marionette) ->
   module = {}
@@ -49,30 +48,39 @@ Tribulations = ((($, _, Backbone, Marionette) ->
 
       # Convert the actual model to a Backbone model if needed
       rawModel = currentNode.get("innerModel")
-
-
       m = if rawModel instanceof Backbone.Model
         rawModel
       else
         new Backbone.Model(rawModel)
 
+      # Augment the model with metadata from tribulations
+      firstLast = @_isFirstLastChild(@experimentStructure, @currentState, @currentDepth)
+      metadata =
+        numChildren: currentNode.numChildren()
+        isFirstSibling: firstLast.isFirst
+        isLastSibling: firstLast.isLast
+        state: _.clone(@currentState)
+
       # Initialize the view class and pass the model down
-      newView = new ViewClass(model: m, state: @currentState)
+      newView = new ViewClass(model: m, metadata: metadata)
+      # For some reason, the first view isn't showing up
       @listenTo(newView, "runner:sectionEnd", -> @trigger("runner:sectionEnd"))
 
       @experimentRegion.show(newView)
 
     sectionEnd: ->
       if @experimentFinished
-        console.error "Received a sectionEnd event after experiment finished"
+        console.error "Received another sectionEnd event after experiment had already finished"
         return
 
       if @currentDepth != @maxDepth
+        # We always want to go deeper if we can, since the leaves are
+        # the prime drivers of the experiment (i.e. the trials)
         @currentDepth++
       else
         while @currentDepth >= 0
-          # Easy case: it's not the last child, so we increment it
-          if not @_isLastChild(@experimentStructure, @currentState, @currentDepth)
+          # Easy case: it's not the last child, so we increment at the current depth
+          if not @_isFirstLastChild(@experimentStructure, @currentState, @currentDepth).isLast
             @currentState[@currentDepth]++
             break
           else
@@ -87,10 +95,15 @@ Tribulations = ((($, _, Backbone, Marionette) ->
       else
         @trigger("runner:sectionBegin")
 
-    _isLastChild: (tree, state, depth) ->
+    # Given a tree, coordinates, and a depth, it tells whether the given
+    # coordinates are at the first or last node of that depth
+    _isFirstLastChild: (tree, state, depth) ->
       coords = _.take(state, (depth + 1) - 1)  # To be clear that `depth` starts at 0
       numChildren = tree.getChildrenAtCoord(coords).length
-      return state[depth] == numChildren - 1
+      return {
+        isFirst: state[depth] == 0
+        isLast: state[depth] == numChildren - 1
+      }
 
   class module.NodeModel extends Backbone.Model
     defaults: ->  # As a function, so we get a new array each time

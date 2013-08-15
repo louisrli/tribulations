@@ -30,6 +30,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-qunit')
 
-  grunt.registerTask('default', ['coffee:compile', 'uglify'])
+  grunt.registerTask('default', ['coffee:compile', 'uglify', 'coffee:compiletest', 'qunit'])
   grunt.registerTask('test', ['coffee:compile', 'coffee:compiletest', 'qunit'])
   grunt.registerTask('release', ['coffee', 'qunit', 'uglify'])

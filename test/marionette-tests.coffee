@@ -1,4 +1,7 @@
 ((->
+  # 
+  # Begin test scaffolding
+  #
   App = new Backbone.Marionette.Application()
   App.addRegions(
     mainRegion: "#main-region"
@@ -35,6 +38,7 @@
 
   class ConditionSectionView extends Marionette.ItemView
     template: "#condition-template"
+    initialize: ->
 
   class BlockSectionView extends Marionette.ItemView
     template: "#block-template"
@@ -42,16 +46,25 @@
   class TrialSectionView extends Marionette.ItemView
     template: "#trial-template"
 
+  experimentStructure = App.loadExperimentData()
   view = new Tribulations.ExperimentRunnerView({
-    experimentStructure: App.loadExperimentData()
+    experimentStructure: experimentStructure
     subviewClasses: [ConditionSectionView, BlockSectionView, TrialSectionView]
     regionElement: "#experiment-region"
     template: "#runner-template"
   })
 
-  ###
+
+  App.mainRegion.show(view)
+  #
+  # End test scaffolding
+  #
+
+  #
   # Begin tests
-  ###
+  #
+  
+  # Helper functions
   deq = deepEqual
   inc = -> view.trigger("runner:sectionEnd")
   incAndTest = (expectedState, message, callback) ->
@@ -59,6 +72,8 @@
     deq(view.currentState, expectedState)
     if callback
       callback()
+  getFrontView = -> view.experimentRegion.currentView
+  viewOpts = -> getFrontView().options.metadata
 
   test('Initial state', ->
     deq(view.currentState, [0, 0, 0], 'Initial state should be 0,0,0')
@@ -67,7 +82,12 @@
   test('Max depth correct', ->
     deq(view.maxDepth, 2, 'Max depth should be 2 for our test case, since we
     have three view subclasses')
-    )
+  )
+
+  test('Initial firstAndLast sibling', ->
+    ok(viewOpts().isFirstSibling, 'We should be at the first sibling in the top level')
+    ok(not viewOpts().isLastSibling, 'We should not be at the last sibling in top level')
+  )
 
   test('increment', ->
     module("Initial state")
@@ -75,21 +95,33 @@
     inc()
     deq(view.currentState, [0, 0, 0], 'Incrementing should only increase depth (0)')
     deq(view.currentDepth, 1, 'Incrementing should increase depth')
+    ok(viewOpts().isFirstSibling, 'We should be at the first sibling in the second level')
+    ok(not viewOpts().isLastSibling, 'We should not be at the last sibling in second level')
 
     inc()
     deq(view.currentState, [0, 0, 0], 'Incrementing should only increase depth (1)')
     deq(view.currentDepth, 2, 'Incrementing should increase depth')
     ok(view.currentDepth == view.maxDepth, 'We should be at the max depth')
+    ok(viewOpts().isFirstSibling, 'We should be at the first sibling in the second level')
 
     # Test that information is passed to the view correctly
     module("Testing progression through the tree")
     incAndTest([0, 0, 1])
+    ok(not viewOpts().isFirstSibling, 'Should not be at first sibling')
+
     incAndTest([0, 0, 2])
+    ok(viewOpts().isLastSibling, 'Should be at last sibling')
+
     incAndTest([0, 1, 0], 'new block')
+    ok(viewOpts().isLastSibling, 'Should be last block of level')
     incAndTest([0, 1, 0], 'new trial after block')
+    ok(viewOpts().isLastSibling, 'Should be at last trial of level')
 
     incAndTest([1, 0, 0], 'new condition')
+    ok((not viewOpts().isLastSibling) and (not viewOpts().isFirstSibling),
+      'Should be neither the first nor last condition')
     incAndTest([1, 0, 0], 'new block')
+    ok(viewOpts().isFirstSibling, 'Should be the first block of middle condition')
     incAndTest([1, 0, 0], 'new trial')
     incAndTest([1, 0, 1], 'next trial')
     incAndTest([1, 0, 2])
