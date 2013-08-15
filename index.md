@@ -18,7 +18,7 @@ App.mainRegion.show(experimentRunnerView);
 ```
 
 When should I use Tribulations?
-------------
+---------------------------------
 You should use Tribulations when your **experimental design can be expressed by depth-first search of a tree**. For example, consider evaluating the performance of *conditions*. In each condition, there are multiple *blocks*, and in each block, there are multiple *trials*.
 
 ![Example of a tree showing experimental structure](images/experiment_structure.png)
@@ -26,7 +26,7 @@ You should use Tribulations when your **experimental design can be expressed by 
 Aside from the assumption that your experimental structure follows a tree with leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. 
 
 Dependencies
--------------
+================
 
 Tribulations uses Marionette, a popular Javascript MV\* framework built on Backbone.js. 
 
@@ -55,8 +55,9 @@ var EXPERIMENT = {
 {% include demo.html %}
 
 <a id="usage"></a>
+
 Usage
------------
+========
 
 Tribulations exports two classes: 
 
@@ -66,11 +67,11 @@ Tribulations exports two classes:
 **NOTE**: This documentation assumes some knowledge of [Marionette](http://marionettejs.com/). 
 
 Tutorial
-------------
+============
 You should provide your own experimental structure for steps 1 to 3. In the tutorial below, we will use a simple experiment with three levels of the experimental tree: conditions, blocks, and trials.
 
 Experimental Structure
-=========================
+-------------------------
 Suppose we have the following experiment, where users are asked to click numbers under various conditions:
 
 ```javascript
@@ -88,7 +89,7 @@ var EXPERIMENT = {
 ```
 
 Scaffolding
-=================
+-----------------
 
 ### 1. Create view classes and templates for each level of the tree. 
 
@@ -208,7 +209,7 @@ App.mainRegion.show(experimentRunnerView);
 ```
 
 Events
-=========
+---------
 
 Listen to `runner:experimentEnd` on `Tribulations.ExperimentRunnerView` to perform an action when the experiment has finished.
 
@@ -232,7 +233,7 @@ var TrialView = Marionette.ItemView.extend({
 ```
 
 Model and Metadata in Subviews
-==================================
+----------------------------------
 
 Any view shown by `Tribulations.ExperimentRunnerView` has access to useful metadata about its associated node through `this.options.metadata`.
 
