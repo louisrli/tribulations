@@ -61,14 +61,14 @@ Usage
 
 Tribulations exports two classes: 
 
-1. `Tribulations.ExperimentRunnerView`: renders the views in the proper order, subclasses [`Marionette.Layout`](https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md) that 
+1. `Tribulations.ExperimentRunnerView`: renders the views in order according to the provided experimental structure, subclasses [`Marionette.Layout`](https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md)
 2. `Tribulations.Node`: a node object for constructing a tree, subclasses [`Backbone.Model`](http://backbonejs.org/#Model) and expects two relevant properties: `innerModel` and `children`
 
 **NOTE**: This documentation assumes some knowledge of [Marionette](http://marionettejs.com/). 
 
 Tutorial
 ============
-You should provide your own experimental structure for steps 1 to 3. In the tutorial below, we will use a simple experiment with three levels of the experimental tree: conditions, blocks, and trials.
+You should provide your own experimental structure, but in the tutorial below, we will use a simple experiment with three levels of the experimental tree: conditions, blocks, and trials.
 
 Experimental Structure
 -------------------------
