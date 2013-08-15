@@ -32,6 +32,7 @@ Tribulations only exports two classes:
 ## Tutorial
 You should provide your own experimental structure for steps 1 to 3. In the tutorial below, we will use a simple experiment with three levels of the experimental tree: conditions, blocks, and trials.
 
+### Experimental Structure
 Suppose we have the following experiment, where users are asked to click numbers under various conditions:
 
 ```javascript
@@ -48,6 +49,7 @@ var EXPERIMENT = {
 };
 ```
 
+### Steps
 1. **Create view classes and templates for each level of the tree.** These classes should be subclasses of [`Marionette.View`](https://github.com/marionettejs/backbone.marionette/tree/master/docs) for each level of the experimental tree. (Recall that in Javascript MV\* frameworks, views are actually more akin to the controllers of traditional MVC, containing more application logic).
 
 ```javascript
@@ -134,7 +136,6 @@ root.set("children", _.map(EXPERIMENT, function(value, key) {
     return conditionNode;
 }));
 ```
-
 3. **Create a DOM element for the experiment**. The name of the template and the region can be anything -- they will be passed into a view later.
 
 ```html
