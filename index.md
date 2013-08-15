@@ -54,7 +54,7 @@ var EXPERIMENT = {
 
 {% include demo.html %}
 
-<a id="#usage"></a>
+<a id="usage"></a>
 Usage
 -----------
 
