@@ -1,7 +1,11 @@
 Tribulations: The Online Experiment Runner
 ============
 
-Tribulations is a Javascript library for [Marionette](http://marionettejs.com/) to display instructions and experimental tasks in remote experiments
+Tribulations is a Javascript library for [Marionette](http://marionettejs.com/) the display logic of instructions and experimental tasks in remote experiments.
+
+Demo and Documentation
+-----------
+See the [demo](TODO) and [documentation](TODO).
 
 When should I use Tribulations?
 ------------
@@ -9,7 +13,7 @@ You should use Tribulations when your experimental structure can be expressed by
 
 ![Example of a tree showing experimental structure](docs/experiment_structure.png)
 
-Aside from the assumption that your experimental structure follows a tree with leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. The logic specific to your experiment will still be implemented by you.
+Aside from the assumption that your experimental structure follows a tree with leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. 
 
 Prerequisites
 -------------
@@ -21,31 +25,23 @@ Tribulations uses Marionette, a popular Javascript MV\* framework built on Backb
   * [Backbone.js](http://backbonejs.org/)
   * [Underscore.js](http://underscorejs.org/)
 
-Usage
-------
-
-A more detailed tutorial follows. In the description below, the word *level* refers to level in the experimental tree, overriding the definition of level in [experimental design](http://en.wikipedia.org/wiki/Factorial_experiment).
-
-1. **Experimental structure:** Load your experimental structure into a tree of `Tribulations.NodeModel` objects, optionally passing down a model on the `innerModel` property that will eventually be rendered in the view.
-
-```javascript
-```
-
-2. **Views for each level of the experimental tree**: Create subclasses of `Backbone.View` or `Marionette.View` for each level of the experimental tree (i.e. `ConditionView` for displaying instructions at the beginning of a condition). (Recall that in Javascript MV\* frameworks, views are actually more like controllers in traditional MVC, and thus contain the logic for each level of your experiment).
-
-```javascript
-
-```
-
-3. **Run the experiment**: Initialize a `Tribulations.ExperimentRunnerView` with your experimental structure. Once you show this view in Marionette, the experiment will begin.
-
-```javascript
-```
-TODO -- a tutorial
 
 Contributing
 -------------
+Install [npm](https://npmjs.org/) and run `npm install`. 
 
-TODO
-phantomjs grunt coffeescript
+To run the tests, install [PhantomJS](http://phantomjs.org/).
 
+To compile and test, run `grunt`.
+
+License
+-------------
+Copyright 2013 Louis Li
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+```
+http://www.apache.org/licenses/LICENSE-2.0
+```
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
