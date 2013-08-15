@@ -1,23 +1,15 @@
 Tribulations: The Online Experiment Runner
 ============
 
-Tribulations is a Javascript library for [Marionette](http://marionettejs.com/) that does away with boilerplate display logic of instructions and experimental tasks in remote experiments.
+[Tribulations](http://louisrli.github.io/tribulations) is a Javascript library for [Marionette](http://marionettejs.com/) that displays instructions and experimental tasks in remote human-computer interaction experiments.
 
-This library is designed and developed with researchers of human-computer interaction in mind.
+This library is designed and developed with HCI researchers in mind.
 
 Demo and Documentation
 -----------
-See the [demo](TODO) and [documentation](TODO).
+See the [website](http://louisrli.github.io/tribulations).
 
-When should I use Tribulations?
-------------
-You should use Tribulations when your **experimental structure can be expressed by a tree**. For example, consider evaluating the performance of multiple clicking tools ( *conditions* ). In each condition, there are multiple *blocks*, and in each block, there are multiple *trials*.
-
-![Example of a tree showing experimental structure](docs/experiment_structure.png)
-
-Aside from the assumption that your experimental structure follows a tree with leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. 
-
-Prerequisites
+Dependencies
 -------------
 
 Tribulations uses Marionette, a popular Javascript MV\* framework built on Backbone.js. 
