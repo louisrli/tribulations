@@ -1,7 +1,9 @@
 Tribulations: The Online Experiment Runner
 ============
 
-Tribulations is a Javascript library for [Marionette](http://marionettejs.com/) the display logic of instructions and experimental tasks in remote experiments.
+Tribulations is a Javascript library for [Marionette](http://marionettejs.com/) that does away with boilerplate display logic of instructions and experimental tasks in remote experiments.
+
+This library is designed and developed with researchers of human-computer interaction in mind.
 
 Demo and Documentation
 -----------
