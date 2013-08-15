@@ -201,8 +201,48 @@ Initialize a `Tribulations.ExperimentRunnerView` with your experimental structur
     App.mainRegion.show(experimentRunnerView);
     ```
 
-## Helpers and Metadata
+## Events
 
-## Other examples
-Include one with practice / reality
+Listen to `runner:experimentEnd` on `Tribulations.ExperimentRunnerView` to perform an action when the experiment has finished.
 
+```javascript
+experimentRunnerView.on("runner:experimentEnd", function() {
+  alert("experiment finished!");
+});
+```
+
+Within one of your subview classes, you can trigger `runner:sectionEnd` to indicate the end of a section (a trial, a block, etc.).
+
+```javascript
+var TrialView = Marionette.ItemView.extend({
+    events: {
+      "click #my-button": function() {
+        // this trial is over when user clicks the button
+        this.trigger("runner:sectionEnd");
+      }
+    }
+});
+```
+
+## Model and Metadata in Subviews
+
+Any view shown by `Tribulations.ExperimentRunnerView` has access to useful metadata about its associated node through `this.options.metadata`.
+
+```javascript
+var TrialView = Marionette.ItemView.extend({
+    template: "#trial-template",
+    onRender: function() { 
+      // the innerModel associated with the node
+      console.log(this.model);
+      
+      // whether this is the first or last sibling in the current branch
+      // useful for skipping unnecessary breaks (i.e. no break needed at
+      // the beginning of an experiment or sending data at the end
+      console.log(this.metadata.isFirstSibling);
+      console.log(this.metadata.isLastSibling);
+
+      // the number of child nodes
+      console.log(this.metadata.numChildren);  
+    }
+});
+```
