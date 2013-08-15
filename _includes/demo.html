@@ -1,0 +1,47 @@
+<div class="experiment-body" id="main-region">
+
+</div>
+
+<script id="runner-template" type="text/html">
+  <div id="experiment-region" class="experiment-region"></div>
+</script>
+
+<script id="condition-template" type="text/html">
+  <div class="instructions">
+    <h1>Instructions</h1>
+    <p>In this section, you will be asked to click on numbers.</p>
+    <p>Click anywhere in this box to continue.</p>
+  </div>
+
+  <div class="annotation">
+    This is a condition.
+  </div>
+</script>
+
+<script id="block-template" type="text/html">
+  <div class="instructions">
+    <h1>Break</h1>
+    <p>You may take a break now.</p>
+    <p>Click anywhere in this box to continue</p>
+  </div>
+  <div class="annotation">
+    This is a block. On the very first block of each condition, you may
+    not want to include the option to take a break.
+  </div>
+</script>
+
+<script id="trial-template" type="text/html">
+  <div class="task">
+    <%- number %>
+  </div>
+  <div class="annotation">
+    This is a trial.
+  </div>
+</script>
+
+<script src="javascripts/lib/jquery.js"></script>
+<script src="javascripts/lib/underscore.js"></script>
+<script src="javascripts/lib/backbone-min.js"></script>
+<script src="javascripts/lib/backbone.marionette.min.js"></script>
+<script src="tribulations.min.js"></script>
+<script src="javascripts/demo.js"></script>

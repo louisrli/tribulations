@@ -46,6 +46,40 @@ table {
 	border-spacing: 0;
 }
 
+/* Demo styles */
+.experiment-body {
+    width: 100%;
+    height: 400px;
+    padding: 15px;
+    margin: 10px auto;
+    border: 1px solid gray;
+    position: relative;
+}
+
+.instructions {
+    cursor: pointer;
+    height: 350px;
+}
+
+.task {
+    margin: 0px auto;
+    width: 20px;
+    font-size: 120px;
+    cursor: pointer;
+}
+
+.annotation {
+    position: absolute;
+    bottom: 20px;
+    font-size: small;
+    width: 50%;
+}
+
+.annotation:before {
+    font-variant: small-caps;
+    content: 'Developer Notes: ';
+}
+
 /* LAYOUT STYLES */
 body {
   font-size: 1em;
