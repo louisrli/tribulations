@@ -54,8 +54,9 @@ var EXPERIMENT = {
 
 {% include demo.html %}
 
-
-# Usage
+<a id="#usage"></a>
+Usage
+-----------
 
 Tribulations only exports two classes: 
 
@@ -64,10 +65,12 @@ Tribulations only exports two classes:
 
 **NOTE**: This documentation assumes some knowledge of [Marionette](http://marionettejs.com/). 
 
-# Tutorial
+Tutorial
+------------
 You should provide your own experimental structure for steps 1 to 3. In the tutorial below, we will use a simple experiment with three levels of the experimental tree: conditions, blocks, and trials.
 
-## Experimental Structure
+Experimental Structure
+=========================
 Suppose we have the following experiment, where users are asked to click numbers under various conditions:
 
     ```javascript
@@ -84,7 +87,8 @@ Suppose we have the following experiment, where users are asked to click numbers
     };
     ```
 
-## Scaffolding
+Scaffolding
+=================
 
 ### 1. Create view classes and templates for each level of the tree. 
 
@@ -140,6 +144,7 @@ These classes should be subclasses of [`Marionette.View`](https://github.com/mar
       <%- number %>  <!-- access the number passed down from the model -->
     </script>
     ```
+
 ### 2. Convert the experimental structure into a tree.
 Instantiate `Tribulations.NodeModel` objects (nodes containing model objects) optionally passing down an `innerModel` model (JSON or `Backbone.Model`) and setting `children` that will eventually be rendered in the view. Be careful, as **this section will different drastically depending on the experiment.**
 
@@ -201,7 +206,8 @@ Initialize a `Tribulations.ExperimentRunnerView` with your experimental structur
     App.mainRegion.show(experimentRunnerView);
     ```
 
-## Events
+Events
+=========
 
 Listen to `runner:experimentEnd` on `Tribulations.ExperimentRunnerView` to perform an action when the experiment has finished.
 
@@ -224,7 +230,8 @@ var TrialView = Marionette.ItemView.extend({
 });
 ```
 
-## Model and Metadata in Subviews
+Model and Metadata in Subviews
+==================================
 
 Any view shown by `Tribulations.ExperimentRunnerView` has access to useful metadata about its associated node through `this.options.metadata`.
 
