@@ -23,9 +23,11 @@ Tribulations only exports two classes: `Tribulations.ExperimentRunnerView` (a su
 **NOTE**: This documentation assumes some knowledge of [Marionette](http://marionettejs.com/). 
 
 ## Tutorial
-1. **Create view classes for each level of the tree.** These classes should be subclasses of [`Marionette.View`](https://github.com/marionettejs/backbone.marionette/tree/master/docs) for each level of the experimental tree (i.e. `ConditionView` for instructions at beginning of a condition, `TrialView` for trial activities). Recall that in Javascript MV\* frameworks, views are actually more akin to the controllers of traditional MVC, containing more application logic).
+You should provide your own experimental structure for steps 1 to 3. In the tutorial below, we will use a simple experiment with three levels of the experimental tree: conditions, blocks, and trials.
+
+1. **Create view classes for each level of the tree.** These classes should be subclasses of [`Marionette.View`](https://github.com/marionettejs/backbone.marionette/tree/master/docs) for each level of the experimental tree. (Recall that in Javascript MV\* frameworks, views are actually more akin to the controllers of traditional MVC, containing more application logic).
 ```javascript
-foo
+TODO include classes
 ```
 
 
@@ -56,4 +58,6 @@ App.mainRegion.show(experimentRunnerView);
 
 ## Attributes
 
+## Other examples
+Include one with practice / reality
 
