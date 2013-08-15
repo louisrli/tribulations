@@ -2,3 +2,4 @@
 node_modules
 dist
 test/marionette-tests.js
+_site
