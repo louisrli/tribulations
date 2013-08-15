@@ -252,6 +252,10 @@ var TrialView = Marionette.ItemView.extend({
 
       // the number of child nodes
       console.log(this.metadata.numChildren);  
+
+      // the "state" of the experiment
+      // i.e. [0, 0, 1] would be the first condition, first block, second trial
+      console.log(this.metadata.state)
     }
 });
 ```
