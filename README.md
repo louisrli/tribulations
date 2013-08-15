@@ -11,7 +11,7 @@ See the [demo](TODO) and [documentation](TODO).
 
 When should I use Tribulations?
 ------------
-You should use Tribulations when your experimental structure can be expressed by a tree. More specifically, consider evaluating the performance of multiple clicking tools ( *conditions* ). In each condition, there are multiple *blocks*, and in each block, there are multiple *trials*.
+You should use Tribulations when your **experimental structure can be expressed by a tree**. For example, consider evaluating the performance of multiple clicking tools ( *conditions* ). In each condition, there are multiple *blocks*, and in each block, there are multiple *trials*.
 
 ![Example of a tree showing experimental structure](docs/experiment_structure.png)
 
