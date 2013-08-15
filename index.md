@@ -21,7 +21,7 @@ When should I use Tribulations?
 ------------
 You should use Tribulations when your **experimental design can be expressed by depth-first search of a tree**. For example, consider evaluating the performance of *conditions*. In each condition, there are multiple *blocks*, and in each block, there are multiple *trials*.
 
-![Example of a tree showing experimental structure](docs/experiment_structure.png)
+![Example of a tree showing experimental structure](images/experiment_structure.png)
 
 Aside from the assumption that your experimental structure follows a tree with leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. 
 
