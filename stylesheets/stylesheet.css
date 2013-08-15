@@ -202,7 +202,7 @@ a.button span {
 }
 
 #view-docs span {
-  background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
+  background: transparent url(../images/doc-icon.png) 12px 50% no-repeat;
 }
 
 code, pre {
