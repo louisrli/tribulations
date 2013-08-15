@@ -103,6 +103,7 @@ var endOnClickEvents = {
     }
 };
 
+// Marionette views
 var ConditionView = Marionette.ItemView.extend({
     template: "#condition-template",
     events: endOnClickEvents
