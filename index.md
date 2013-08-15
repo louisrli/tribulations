@@ -16,9 +16,40 @@ var experimentRunnerView = new Tribulations.ExperimentRunnerView({
 // Begin the experiment!
 App.mainRegion.show(experimentRunnerView);
 ```
+When should I use Tribulations?
+------------
+You should use Tribulations when your **experimental structure can be expressed by a tree**. For example, consider evaluating the performance of multiple clicking tools ( *conditions* ). In each condition, there are multiple *blocks*, and in each block, there are multiple *trials*.
+
+![Example of a tree showing experimental structure](docs/experiment_structure.png)
+
+Aside from the assumption that your experimental structure follows a tree with leaves at equal depth, **Tribulations makes no assumptions about the content of your experiment**. 
+
+Dependencies
+-------------
+
+Tribulations uses Marionette, a popular Javascript MV\* framework built on Backbone.js. 
+
+* [Marionette.js](http://marionettejs.com)
+  * [jQuery](http://jquery.com)
+  * [Backbone.js](http://backbonejs.org/)
+  * [Underscore.js](http://underscorejs.org/)
 
 # Demo
-This demo illustrates a simple experiment in which the user is asked to click on numbers. In the tutorial, we'll later see that the code for the demo has **no transition boilerplate code**.
+This demo illustrates a simple experiment in which the user is asked to click on numbers. In the tutorial, we'll later see that the code for the demo has **no transition boilerplate code**. 
+
+    ```javascript
+    var EXPERIMENT = {
+      firstCondition: [
+        [1, 2, 3],  // first block and three trials
+        [4, 5],     // second block and two trials
+        [6]        // etc.
+      ],
+      secondCondition: [
+        [7, 8, 9],
+        [8, 7]
+      ]
+    };
+    ```
 
 {% include demo.html %}
 
@@ -49,7 +80,6 @@ Suppose we have the following experiment, where users are asked to click numbers
     };
     ```
 
-### Steps
 1. **Create view classes and templates for each level of the tree.** These classes should be subclasses of [`Marionette.View`](https://github.com/marionettejs/backbone.marionette/tree/master/docs) for each level of the experimental tree. (Recall that in Javascript MV\* frameworks, views are actually more akin to the controllers of traditional MVC, containing more application logic).
 
     ```javascript
@@ -84,7 +114,7 @@ Suppose we have the following experiment, where users are asked to click numbers
     });
     ```
 
-    ```html
+    ```
     <!-- Marionette templates -->
     <script id="runner-template" type="text/html">
       <div id="experiment-region" class="experiment-region"></div>
