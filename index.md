@@ -17,6 +17,9 @@ var experimentRunnerView = new Tribulations.ExperimentRunnerView({
 App.mainRegion.show(experimentRunnerView);
 ```
 
+# Demo
+{% include demo.html %}
+
 # Usage
 Tribulations only exports two classes: `Tribulations.ExperimentRunnerView` (a subclass of [`Marionette.Layout`](https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md) and `Tribulations.Node`.
 
